@@ -1,0 +1,59 @@
+-- table books w all informations
+create table Books (
+	idBook int auto_increment primary key, -- autoincrement is good for primary key 
+	title varchar(255),
+	ISBN int,
+    description text,
+    category enum ('fiction', 'romance', 'suspense', 'horror') -- options inside ()
+);
+
+create table Authors (
+	idAuthor int auto_increment primary key,
+	name varchar(45),
+	birthday date,
+    biography varchar(300)
+);
+
+create table Loans (
+	idLoan int auto_increment primary key,
+    quantBooks int,
+	initialDate date,
+	deliveryDate date    
+);
+
+create table Users (
+	idUser int auto_increment primary key,
+	name varchar(45),
+    email varchar(45),
+    registerDate date,
+    member_type enum ('null', 'regular', 'premium', 'gold')
+);
+
+-- tables that make relations between the tables ahead
+
+-- table book and authors
+create table Books_Authors (
+	idBA int primary key,
+	idBook int,
+    idAuthor int,
+    foreign key (idBook) references Books(idBook),
+    foreign key (idAuthor) references Authors(idAuthor)
+);
+
+-- table book and the loans
+create table Books_Loans (
+	idBL int primary key,
+	idBook int,
+    idLoan int,
+    foreign key (idBook) references Books(idBook),
+    foreign key (idLoan) references Loans(idLoan)
+);
+
+-- table loans and the users
+create table Loans_Users (
+	idLU int primary key,
+	idLoan int,
+    idUser int,
+    foreign key (idLoan) references Loans(idLoan),
+    foreign key (idUser) references Users(idUser)
+);
