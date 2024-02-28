@@ -1,0 +1,66 @@
+-- select data in the table
+SELECT * FROM users;
+
+-- inserting data in the table
+INSERT INTO users (name, email, registerDate, member_type)
+VALUES
+    (
+        'João Silva', 
+        'joao.silva@example.com', 
+        '2023-02-27', 
+        'Premium'
+    ),
+    (
+        'Maria Santos', 
+        'maria.santos@example.com', 
+        '2023-02-27', 
+        'Free'
+    ),
+    (
+        'Pedro Oliveira', 
+        'pedro.oliveira@example.com', 
+        '2023-02-26', 
+        'Premium'
+    ),
+    (
+        'Ana Costa', 
+        'ana.costa@example.com', 
+        '2023-02-25', 
+        'Free'
+    ),
+    (
+        'Carlos Ferreira', 
+        'carlos.ferreira@example.com', 
+        '2023-02-25', 
+        'Premium'
+    ),
+    (
+        'Mariana Lima', 
+        'mariana.lima@example.com', 
+        '2023-02-24', 
+        'Free'
+    ),
+    (
+        'Paulo Rodrigues', 
+        'paulo.rodrigues@example.com', 
+        '2023-02-24', 
+        'Premium'
+    ),
+    (
+        'Sofia Pereira', 
+        'sofia.pereira@example.com', 
+        '2023-02-23', 
+        'Free'
+    ),
+    (
+        'Rafaela Almeida', 
+        'rafaela.almeida@example.com', 
+        '2023-02-23', 
+        'Premium'
+    ),
+    (
+        'Daniel Oliveira', 
+        'daniel.oliveira@example.com', 
+        '2023-02-22', 
+        'Free'
+    );

@@ -1,5 +1,5 @@
 -- select data in the table
-SELECT * FROM authors;
+SELECT * FROM books;
 
 -- inserting data in the table
 INSERT INTO authors (name, birthday, biography)
