@@ -1,0 +1,166 @@
+-- CREATE DATABASE biblioteca_Marcia;
+USE biblioteca_Marcia;
+
+-- Tabela de Categoria
+CREATE TABLE Categoria (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    Nome VARCHAR(100) NOT NULL
+);
+
+-- Tabela de Livro
+CREATE TABLE Livro (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    titulo VARCHAR(255) NOT NULL,
+    isbn VARCHAR(13) NOT NULL,
+    descricao TEXT,
+    id_categoria int,
+    FOREIGN KEY (id_categoria) REFERENCES Categoria(id)
+);
+
+-- Tabela de Autor
+CREATE TABLE Autor (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    data_nascimento DATE,
+    biografia TEXT
+);
+
+-- Tabela de Relacionamento entre Livros e Autores (Muitos para Muitos)
+CREATE TABLE LivroAutor (
+    livro_id INT,
+    autor_id INT,
+    PRIMARY KEY (livro_id, autor_id),
+    FOREIGN KEY (livro_id) REFERENCES Livro(id),
+    FOREIGN KEY (autor_id) REFERENCES Autor(id)
+);
+
+-- Tabela de Usuário
+CREATE TABLE Usuario (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    identificacao VARCHAR(20) UNIQUE,
+    email VARCHAR(100),
+    data_registro DATE,
+    nivel_associacao VARCHAR(50) DEFAULT 'regular'
+);
+
+-- Tabela de Empréstimo
+CREATE TABLE Emprestimo (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    usuario_id INT,
+    livro_id INT,
+    data_inicio DATE NOT NULL,
+    data_retorno_prevista DATE NOT NULL,
+    FOREIGN KEY (usuario_id) REFERENCES Usuario(id),
+    FOREIGN KEY (livro_id) REFERENCES Livro(id)
+);
+
+-- Inserção de dados fictícios na tabela Categoria
+INSERT INTO Categoria(nome) VALUES
+    ('Romance'),
+    ('Ficção'),
+    ('Fantasia'),
+    ('Mistério'),
+    ('Terror'),
+    ('Biografia'),
+    ('Autoajuda'),
+    ('Poesia'),
+    ('Suspense'),
+    ('Clássico'),
+    ('Drama'),
+    ('Infantil');
+
+-- Inserção de dados fictícios na tabela Livros
+INSERT INTO Livro (titulo, isbn, descricao, id_categoria) VALUES
+    ('A Guerra dos Tronos', '9780553103540', 'Livro 1 da série As Crônicas de Gelo e Fogo.', 2),
+    ('Harry Potter e a Pedra Filosofal', '9788532530847', 'Primeiro livro da série Harry Potter.', 3),
+    ('O Senhor dos Anéis: A Sociedade do Anel', '9788595081637', 'Primeiro livro da trilogia O Senhor dos Anéis.', 3),
+    ('1984', '9780451524935', 'Clássico distópico de George Orwell.', 2),
+    ('Dom Quixote', '9788535916930', 'Obra-prima da literatura espanhola.', 10),
+    ('O Pequeno Príncipe', '9788572326716', 'Clássico infantil de Antoine de Saint-Exupéry.', 12),
+    ('A Menina que Roubava Livros', '9788535914882', 'Romance de Markus Zusak ambientado na Segunda Guerra Mundial.', 1),
+    ('A Culpa é das Estrelas', '9788580572184', 'Romance de John Green sobre dois adolescentes com câncer.', 1),
+    ('Percy Jackson e o Ladrão de Raios', '9788598078129', 'Primeiro livro da série Percy Jackson & os Olimpianos.', 3),
+    ('O Código Da Vinci', '9788575421466', 'Thriller de Dan Brown envolvendo conspirações religiosas.', 9),
+    ('O Nome do Vento', '9788579622686', 'Primeiro livro da série Crônica do Matador do Rei.', 3),
+    ('O Hobbit', '9788580572368', 'Fantasia de J.R.R. Tolkien, prelúdio de O Senhor dos Anéis.', 3),
+    ('Cem Anos de Solidão', '9788535912703', 'Obra-prima de Gabriel García Márquez.', 10),
+    ('O Diário de Anne Frank', '9788578276948', 'Diário de uma adolescente judia durante a Segunda Guerra Mundial.', 6),
+    ('Orgulho e Preconceito', '9788573262716', 'Clássico romance de Jane Austen.', 1),
+    ('Moby Dick', '9788535932336', 'Clássico da literatura sobre a caça a uma baleia branca.', 10),
+    ('A Revolução dos Bichos', '9788525410672', 'Allegoria política de George Orwell com animais que se revoltam contra os humanos.', 2),
+    ('A Metamorfose', '9788537807007', 'Novela de Franz Kafka sobre um homem que se transforma em um inseto.', 2),
+    ('Crime e Castigo', '9788573263584', 'Romance de Dostoiévski sobre um estudante que comete um assassinato.', 1),
+    ('Os Miseráveis', '9788599296287', 'Romance clássico de Victor Hugo ambientado na França do século XIX.', 10);
+
+-- Inserção de dados fictícios na tabela Autores
+INSERT INTO Autor (nome, data_nascimento, biografia) VALUES
+    ('George R.R. Martin', '1948-09-20', 'Autor de As Crônicas de Gelo e Fogo.'),
+    ('J.K. Rowling', '1965-07-31', 'Autora de Harry Potter.'),
+    ('J.R.R. Tolkien', '1892-01-03', 'Autor de O Senhor dos Anéis.'),
+    ('George Orwell', '1903-06-25', 'Autor de 1984 e A Revolução dos Bichos.'),
+    ('Miguel de Cervantes', '1547-09-29', 'Autor de Dom Quixote.'),
+    ('Antoine de Saint-Exupéry', '1900-06-29', 'Autor de O Pequeno Príncipe.'),
+    ('Markus Zusak', '1975-06-23', 'Autor de A Menina que Roubava Livros.'),
+    ('John Green', '1977-08-24', 'Autor de A Culpa é das Estrelas.'),
+    ('Rick Riordan', '1964-06-05', 'Autor de Percy Jackson e o Ladrão de Raios.'),
+    ('Dan Brown', '1964-06-22', 'Autor de O Código Da Vinci.'),
+    ('Patrick Rothfuss', '1973-06-06', 'Autor de O Nome do Vento.'),
+    ('Gabriel García Márquez', '1927-03-06', 'Autor de Cem Anos de Solidão.'),
+    ('Anne Frank', '1929-06-12', 'Autora de O Diário de Anne Frank.'),
+    ('Jane Austen', '1775-12-16', 'Autora de Orgulho e Preconceito.'),
+    ('Herman Melville', '1819-08-01', 'Autor de Moby Dick.'),
+    ('Franz Kafka', '1883-07-03', 'Autor de A Metamorfose.'),
+    ('Fyodor Dostoevsky', '1821-11-11', 'Autor de Crime e Castigo.'),
+    ('Victor Hugo', '1802-02-26', 'Autor de Os Miseráveis.');
+
+-- Inserção de dados fictícios na tabela Usuarios
+INSERT INTO Usuario (nome, identificacao, email, data_registro, nivel_associacao) VALUES
+    ('João Silva', '12345', 'joao@example.com', '2023-05-10', 'regular'),
+    ('Maria Santos', '54321', 'maria@example.com', '2023-07-20', 'regular'),
+    ('Pedro Souza', '98765', 'pedro@example.com', '2023-08-15', 'regular'),
+    ('Ana Oliveira', '56789', 'ana@example.com', '2023-09-01', 'premium'),
+    ('Carlos Pereira', '13579', 'carlos@example.com', '2023-09-25', 'regular'),
+    ('Juliana Lima', '24680', 'juliana@example.com', '2023-10-10', 'premium'),
+    ('Fernando Costa', '98766', 'fernando@example.com', '2023-11-05', 'regular'),
+    ('Amanda Santos', '54322', 'amanda@example.com', '2023-12-01', 'regular'),
+    ('Lucas Oliveira', '12346', 'lucas@example.com', '2024-01-10', 'premium'),
+    ('Camila Silva', '56790', 'camila@example.com', '2024-02-05', 'regular');
+
+-- Inserção de dados fictícios na tabela Emprestimos
+INSERT INTO Emprestimo (usuario_id, livro_id, data_inicio, data_retorno_prevista) VALUES
+    (1, 1, '2024-02-10', '2024-03-10'),
+    (2, 2, '2024-02-08', '2024-03-08'),
+    (3, 3, '2024-02-12', '2024-03-12'),
+    (4, 4, '2024-02-15', '2024-03-15'),
+    (5, 5, '2024-02-18', '2024-03-18'),
+    (6, 6, '2024-02-20', '2024-03-20'),
+    (7, 7, '2024-02-22', '2024-03-22'),
+    (8, 8, '2024-02-25', '2024-03-25'),
+    (9, 9, '2024-02-28', '2024-03-28'),
+    (10, 10, '2024-03-01', '2024-04-01'),
+    (10, 10, '2024-04-02', '2024-04-07');
+
+-- Inserção de dados fictícios na tabela LivroAutor
+INSERT INTO LivroAutor (livro_id, autor_id) VALUES
+    (1, 1), -- A Guerra dos Tronos - George R.R. Martin
+    (2, 2), -- Harry Potter e a Pedra Filosofal - J.K. Rowling
+    (3, 3), -- O Senhor dos Anéis: A Sociedade do Anel - J.R.R. Tolkien
+    (4, 4), -- 1984 - George Orwell
+    (5, 5), -- Dom Quixote - Miguel de Cervantes
+    (6, 6), -- O Pequeno Príncipe - Antoine de Saint-Exupéry
+    (7, 7), -- A Menina que Roubava Livros - Markus Zusak
+    (8, 8), -- A Culpa é das Estrelas - John Green
+    (9, 9), -- Percy Jackson e o Ladrão de Raios - Rick Riordan
+    (10, 10), -- O Código Da Vinci - Dan Brown
+    (11, 11), -- O Nome do Vento - Patrick Rothfuss
+    (12, 12), -- O Hobbit - J.R.R. Tolkien
+    (13, 13), -- Cem Anos de Solidão - Gabriel García Márquez
+    (14, 14), -- O Diário de Anne Frank - Anne Frank
+    (15, 15), -- Orgulho e Preconceito - Jane Austen
+    (16, 16), -- Moby Dick - Herman Melville
+    (17, 17), -- A Metamorfose - Franz Kafka
+    (18, 18); -- Crime e Castigo - Fyodor Dostoevsky
+
+
+

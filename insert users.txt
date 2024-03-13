@@ -1,66 +1,62 @@
--- select data in the table
-SELECT * FROM users;
-
--- inserting data in the table
 INSERT INTO users (name, email, registerDate, member_type)
 VALUES
     (
-        'João Silva', 
-        'joao.silva@example.com', 
+        'Ingrid Silva', 
+        'ingrid@example.com', 
         '2023-02-27', 
         'Premium'
     ),
     (
-        'Maria Santos', 
-        'maria.santos@example.com', 
+        'Duda Santos', 
+        'duda@example.com', 
         '2023-02-27', 
-        'Free'
+        'Regular'
     ),
     (
-        'Pedro Oliveira', 
-        'pedro.oliveira@example.com', 
+        'Emanu Oliveira', 
+        'emanu@example.com', 
         '2023-02-26', 
         'Premium'
     ),
     (
-        'Ana Costa', 
-        'ana.costa@example.com', 
+        'Isabelli Costa', 
+        'isabelli@example.com', 
         '2023-02-25', 
-        'Free'
+        'Gold'
     ),
     (
-        'Carlos Ferreira', 
-        'carlos.ferreira@example.com', 
+        'Malu Ferreira', 
+        'malu@example.com', 
         '2023-02-25', 
         'Premium'
+    ), 
+    (
+        'Juliana Silva', 
+        'juliana@example.com', 
+        '2023-02-27', 
+        'Gold'
     ),
     (
-        'Mariana Lima', 
-        'mariana.lima@example.com', 
-        '2023-02-24', 
-        'Free'
+        'Manu Santos', 
+        'manu@example.com', 
+        '2023-02-27', 
+        'Regular'
     ),
     (
-        'Paulo Rodrigues', 
-        'paulo.rodrigues@example.com', 
-        '2023-02-24', 
+        'Vilma Oliveira', 
+        'vilma@example.com', 
+        '2023-02-26', 
         'Premium'
     ),
     (
-        'Sofia Pereira', 
-        'sofia.pereira@example.com', 
-        '2023-02-23', 
-        'Free'
+        'Davi Costa', 
+        'davi@example.com', 
+        '2023-02-25', 
+        'Gold'
     ),
     (
-        'Rafaela Almeida', 
-        'rafaela.almeida@example.com', 
-        '2023-02-23', 
+        'Ana Ferreira', 
+        'ana@example.com', 
+        '2023-02-25', 
         'Premium'
-    ),
-    (
-        'Daniel Oliveira', 
-        'daniel.oliveira@example.com', 
-        '2023-02-22', 
-        'Free'
     );

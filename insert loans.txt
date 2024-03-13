@@ -1,7 +1,3 @@
--- select data in the table
-SELECT * FROM loans;
-
--- inserting data in the table
 INSERT INTO loans (quantBooks, initialDate, deliveryDate)
 VALUES
     (2, '2024-02-27', '2024-03-05'),
@@ -14,3 +10,6 @@ VALUES
     (3, '2024-02-20', '2024-02-27'),
     (1, '2024-02-19', '2024-02-26'),
     (2, '2024-02-18', '2024-02-25');
+
+
+select * from loans;
